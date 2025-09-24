@@ -147,7 +147,6 @@ export default function WorkersPage() {
   // Handle page changes
   const handlePageChange = useCallback((page: number) => {
     setPagination(prev => ({ ...prev, currentPage: page }))
-    console.log('Page changed to:', page)
 
     // Smooth scroll to top of results
     const element = document.getElementById('workers-grid');
