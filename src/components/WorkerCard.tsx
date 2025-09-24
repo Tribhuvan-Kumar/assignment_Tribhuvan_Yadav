@@ -1,6 +1,6 @@
 'use client'
 import Image from 'next/image'
-import { memo, useState } from 'react'
+import { memo } from 'react'
 import { WorkerType } from '@/types/workers'
 
 interface WorkerCardProps {
@@ -9,21 +9,19 @@ interface WorkerCardProps {
 }
 
 const WorkerCard = memo(({ worker, isFirst }: WorkerCardProps) => {
-    const [imgSrc, setImgSrc] = useState(worker.image ?? '/user.webp');
     const formattedPrice = Math.round(worker.pricePerDay * 1.18)
 
     return (
         <div className="group border border-gray-200 rounded-xl overflow-hidden shadow-sm bg-white hover:shadow-lg hover:border-blue-300 transition-all duration-300 hover:-translate-y-1">
             <div className="w-full h-48 relative overflow-hidden">
                 <Image
-                    src={imgSrc}
+                    src={worker.image ?? '/user.webp'}
                     alt={`${worker.name} - ${worker.service} specialist`}
                     fill
                     className="object-cover group-hover:scale-105 transition-transform duration-300"
                     priority={isFirst}
                     loading={isFirst ? 'eager' : 'lazy'}
                     sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
-                    onError={() => setImgSrc('/user.webp')}
                 />
             </div>
 
