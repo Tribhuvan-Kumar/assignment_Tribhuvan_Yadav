@@ -108,7 +108,7 @@ export default function WorkersPage() {
   // Filter and paginate workers - Memoized
   const filteredAndPaginatedWorkers = useMemo(() => {
     // Apply filters
-    let filtered = workersData.filter(worker => {
+    const filtered = workersData.filter(worker => {
       const serviceMatch = !filters.service || worker.service === filters.service
       const priceMatch = worker.pricePerDay >= filters.minPrice && worker.pricePerDay <= filters.maxPrice
       return serviceMatch && priceMatch
@@ -148,7 +148,7 @@ export default function WorkersPage() {
   const handlePageChange = useCallback((page: number) => {
     setPagination(prev => ({ ...prev, currentPage: page }))
     console.log('Page changed to:', page)
-    
+
     // Smooth scroll to top of results
     const element = document.getElementById('workers-grid');
     if (element) {
